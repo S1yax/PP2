@@ -1,0 +1,6 @@
+second = str(44152)   
+first = int(752)    
+third = float(85/52)  
+print(second)
+print(first)
+print(third)
