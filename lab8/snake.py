@@ -3,20 +3,17 @@ from pygame.math import Vector2
 
 class Snake:
     def __init__(self):
-        self.body=[Vector2(5,10),Vector2(4,10),Vector2(3,10)]
+        self.body=[Vector2(5,10),Vector2(4,10)]#части тела и импорт
         self.direction=Vector2(1,0)
         self.new_block=False
-
         self.head_up=pygame.image.load('head_up.png').convert_alpha()
         self.head_down=pygame.image.load('head_down.png').convert_alpha()
         self.head_right=pygame.image.load('head_right.png').convert_alpha()
         self.head_left=pygame.image.load('head_left.png').convert_alpha()
-
         self.tail_up=pygame.image.load('tail_down.png').convert_alpha()
         self.tail_down=pygame.image.load('tail_up.png').convert_alpha()
         self.tail_right=pygame.image.load('tail_left.png').convert_alpha()
         self.tail_left=pygame.image.load('tail_right.png').convert_alpha()
-
         self.body_vertical=pygame.image.load('vertical_body.png').convert_alpha()
         self.body_horizontal=pygame.image.load('horizontal_body.png').convert_alpha()
 
@@ -82,7 +79,7 @@ class Snake:
 
 class Fruit:
     def __init__(self):
-        self.randomize()
+        self.randomize() # яблоко появляется рандомно
 
     def draw_fruit(self):
         fruit_rec=pygame.Rect(int(self.pos.x*cell_size),int(self.pos.y*cell_size),cell_size,cell_size)
@@ -139,8 +136,8 @@ class Main:
         score_rect=score_surface.get_rect(center=(score_x,score_y))
         screen.blit(score_surface,score_rect)
 
-pygame.init()
-cell_size=40
+pygame.init() #экран по клеткам=на блок из 40 пикс
+cell_size=30
 cell_number=20
 screen=pygame.display.set_mode((cell_number*cell_size,cell_number*cell_size))
 clock=pygame.time.Clock()
@@ -156,7 +153,7 @@ while True:
         if event.type==pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if event.type==SCREEN_UPDATE:
+        if event.type==SCREEN_UPDATE: #управление змейкой через клаву
             main_game.update()
         if event.type == pygame.KEYDOWN:
             if event.key==pygame.K_UP and main_game.snake.direction.y!=1:
